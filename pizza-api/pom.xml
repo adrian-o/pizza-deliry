@@ -79,7 +79,7 @@
                             <goal>build</goal>
                             <goal>generate-code</goal>
                             <goal>generate-code-tests</goal>
-                            <goal>native-image-agent</goal>
+                            <!--goal>native-image-agent</goal-->
                         </goals>
                     </execution>
                 </executions>
@@ -133,7 +133,8 @@
             </activation>
             <properties>
                 <skipITs>false</skipITs>
-                <quarkus.native.enabled>true</quarkus.native.enabled>
+                <quarkus.package.type>native</quarkus.package.type>
+                <!--quarkus.native.enabled>true</quarkus.native.enabled-->
             </properties>
         </profile>
     </profiles>

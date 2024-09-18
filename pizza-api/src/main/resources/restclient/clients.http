@@ -1,0 +1,12 @@
+GET http://localhost:8080/api/clients/1
+
+###
+
+POST http://localhost:8080/api/clients
+content-type: application/json
+
+{
+    "name": "Ronaldo Javier",
+    "email": "ronaldoj@email.com",
+    "phone": "11999999999"
+}

@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/tickets/1
+
+###
+
+POST http://localhost:8080/api/tickets
+content-type: application/json
+
+{
+    "clientId": 1,
+    "addressMain": "Avenida Vila Linda, 8040",
+    "addressDetail": "AP 222 C",
+    "phone": "11999999999"
+}
+
+###
+
+DELETE http://localhost:8080/api/tickets/1
