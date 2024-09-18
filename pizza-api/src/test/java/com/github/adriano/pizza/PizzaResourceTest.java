@@ -62,7 +62,7 @@ public class PizzaResourceTest {
 
         // WHEN
         var person = Client.persist("Adriano", "adriano.oh@email.com", "1198099098");
-        var ticket = Ticket.persist(person.id, "Av Vila Ola, 488", "Alameda 4", "11999999999", TicketStatus.CREATED);
+        var ticket = Ticket.persist(person.id, "Av Vila Ola, 488", "Alameda 4", "11999999999");
         ticket.addItem(marg, 3, trad.price);
         var finalPrice = ticket.showTotal();
 
