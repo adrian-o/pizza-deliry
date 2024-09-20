@@ -26,3 +26,8 @@ content-type: application/json
     "quantity": 2,
     "price": 10.99
 }
+
+###
+
+POST http://localhost:8080/api/tickets/1/submit
+content-type: application/json

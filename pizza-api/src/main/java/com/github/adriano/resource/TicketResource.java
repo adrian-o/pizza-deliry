@@ -1,19 +1,26 @@
 package com.github.adriano.resource;
 
+import com.github.adriano.event.TicketSubmitted;
 import com.github.adriano.model.Pizza;
 import com.github.adriano.model.Ticket;
 import com.github.adriano.model.TicketItem;
 import com.github.adriano.model.enums.TicketStatus;
 import com.github.adriano.resource.records.TicketItemAdd;
 
+import jakarta.enterprise.event.Event;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Path("/tickets")
 public class TicketResource {
+
+    @Inject
+    Event<TicketSubmitted> ticketSubmittedEvent;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,6 +83,7 @@ public class TicketResource {
     @POST
     @Path("/{id}/submit")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Ticket submit(@PathParam(value = "id") Long id) {
         Ticket ticket = read(id);
@@ -86,6 +94,8 @@ public class TicketResource {
         ticket.status = TicketStatus.SUBMITTED;
 
         ticket.persistAndFlush();
+
+        ticketSubmittedEvent.fire(new TicketSubmitted(ticket, LocalDateTime.now()));
 
         return ticket;
     }
